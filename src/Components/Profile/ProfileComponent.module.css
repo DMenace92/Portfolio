@@ -94,6 +94,9 @@
   font-weight: 200;
   line-height: 10px;
   transition: 0.2s ease-in-out;
+  width: 162px;
+  max-width: 162px;
+  display: inline-block;
 }
 .selectionItem.selected {
   color: white;

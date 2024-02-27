@@ -46,29 +46,23 @@ const ProfileComponent = () => {
               About
             </li>
             <li
-              className={
-                activePage === 2
-                  ? styles.selectionItemPage
-                  : styles.selectionItem
-              }
+              className={`${styles.selectionItem} ${
+                activePage === 2 && styles.selected
+              }`}
             >
               Experience
             </li>
             <li
-              className={
-                activePage === 3
-                  ? styles.selectionItemPage
-                  : styles.selectionItem
-              }
+              className={`${styles.selectionItem} ${
+                activePage === 3 && styles.selected
+              }`}
             >
               Project
             </li>
             <li
-              className={
-                activePage === 4
-                  ? styles.selectionItemPage
-                  : styles.selectionItem
-              }
+              className={`${styles.selectionItem} ${
+                activePage === 4 && styles.selected
+              }`}
             >
               Contact Me
             </li>
