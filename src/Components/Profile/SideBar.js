@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import profilePic from '../../Images/profilePic.jpg'
 import NodeIcon from '../../Images/NodeIcon.svg'
 import facebook from '../../Images/Vector5.svg'
@@ -12,42 +12,36 @@ import { useActivePage } from '../../providers/activePageProvider'
 const ProfileComponent = () => {
   const { activePage } = useActivePage()
 
-
   return (
     <div className={styles.gridDesign}>
       <div className={styles.portfolioHolder}>
         {/* <div className="ProfileImageHolder"> */}
         <div className={styles.shapeContainer}>
-          <div className="imagePosition">
+          <div className={styles.imagePosition}>
             <img
               className={styles.ProfileImageHolder}
               src={profilePic}
               alt="Dennis Enwiya"
             ></img>
+            <div className={styles.shape1}></div>
+            <div className={styles.shape2}></div>
           </div>
-          <div className={styles.shape1}></div>
-          <div className={styles.shape2}></div>
         </div>
-        <div>
 
-    
-          <div className={styles.nameContainer}>
-            <h1 className={styles.nameTextStyle}>DENNIS</h1>
-            <h1 className={styles.nameTextStyle1}>ENWIYA</h1>
-          </div>
+        <div className={styles.nameContainer}>
+          <h1 className={styles.nameTextStyle}>DENNIS</h1>
+          <h1 className={styles.nameTextStyle1}>ENWIYA</h1>
+        </div>
 
-          <div className={styles.contentItemsWrapper}>
+        <div className={styles.contentItemsWrapper}>
           <img className={styles.NodeIcon} src={NodeIcon} alt="Node"></img>
-
 
           <ul className={styles.navigationSelection}>
             {/* <div className={styles.NodeDesign}></div> */}
             <li
-              className={
-                activePage === 1
-                  ? styles.selectionItemPage
-                  : styles.selectionItem
-              }
+              className={`${styles.selectionItem} ${
+                activePage === 1 && styles.selected
+              }`}
             >
               About
             </li>
@@ -78,10 +72,9 @@ const ProfileComponent = () => {
             >
               Contact Me
             </li>
-
           </ul>
-          </div>
         </div>
+
         <div className={styles.footerSocialMedia}>
           {/* Add your social media icons or links here */}
           <a href="https://www.facebook.com/dennis.enwiya/">
