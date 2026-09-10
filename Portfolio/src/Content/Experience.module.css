@@ -51,6 +51,9 @@
 .educationSegment {
   margin-bottom: 30px;
 }
+.schoolMajorStyle {
+  font-weight: 500;
+}
 
 .schoolInfoHolder {
   width: auto;

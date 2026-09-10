@@ -183,14 +183,22 @@ const Experience = forwardRef((props, ref) => {
             <p className={styles.schoolInfoTitle}>
               Southern New Hampshire University
             </p>
+            <p>Bachelor's Degree</p>
+            <p className={styles.schoolMajorStyle}>Computer Science</p>
             <p className={styles.EducationYearText}>2021 - 2023</p>
           </div>
           <div className={styles.schoolInfoHolder}>
             <p className={styles.schoolInfoTitle}>Galvanize</p>
+            <p>Certificate Program</p>
+            <p className={styles.schoolMajorStyle}>
+              Web-Design and Web-Development
+            </p>
             <p className={styles.EducationYearText}>2018 - 2019</p>
           </div>
           <div className={styles.schoolInfoHolder}>
             <p className={styles.schoolInfoTitle}>Greenway High School</p>
+            <p>High School Degree</p>
+            <p className={styles.schoolMajorStyle}>General Education</p>
             <p className={styles.EducationYearText}>2006 - 2010</p>
           </div>
         </div>
