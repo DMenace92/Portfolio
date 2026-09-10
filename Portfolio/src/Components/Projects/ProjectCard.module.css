@@ -8,9 +8,9 @@
   display: flex;
   flex-direction: column;
   padding: 20px 30px 20px 20px;
-  background: rgba(0, 0, 0, 0.3);
-  background: linear-gradient(0deg, #2b0129bf, 30%, #000000a1);
-  background: linear-gradient(0deg, #000000a1, 30%, #2b0129bf);
+  background: var(--scrim-subtle);
+  background: linear-gradient(0deg, #0b1e3abf, 30%, #000000a1);
+  background: linear-gradient(0deg, #000000a1, 30%, #0b1e3abf);
   border-radius: 15px;
   margin-bottom: 30px;
 }
@@ -139,7 +139,7 @@
 
 .linkItem a,
 .linkItem .icon {
-  color: #fd6389;
+  color: var(--color-accent);
 }
 
 .pillContainer {
@@ -150,12 +150,13 @@
 
 .pillContainer .pill {
   margin-right: 8px;
-  background: #3d0079;
+  background: var(--color-purple);
   border-radius: 30px;
-  color: white;
+  color: var(--color-text);
   padding: 3px 10px;
   font-size: 12px;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 1024px) {

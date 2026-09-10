@@ -6,7 +6,7 @@
   margin-bottom: 30px;
 }
 .objectTest {
-  background-color: rgba(0, 0, 0, 0.372);
+  background-color: var(--scrim-panel);
   display: flex;
   align-items: center;
   padding: 10px 20px;

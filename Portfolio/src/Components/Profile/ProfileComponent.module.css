@@ -9,7 +9,7 @@
 }
 
 .portfolioHolder {
-  background-color: rgba(0, 0, 0, 0.46);
+  background-color: var(--scrim-sidebar);
   width: 400px;
   height: 100vh;
   display: flex;
@@ -27,6 +27,11 @@
   max-width: 100%;
   border-radius: 50%;
   width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .contentItemsWrapper {
   display: flex;
@@ -40,8 +45,8 @@
   border-radius: 50%;
   height: 200px;
   width: 200px;
-  background-color: #cb0842;
-  filter: drop-shadow(0px 4px 18px rgba(253, 99, 137, 0.77));
+  background-color: var(--color-accent-crimson);
+  filter: drop-shadow(0px 4px 18px var(--glow-pink-strong));
   /* border: 3px solid rgb(255, 255, 255); */
 }
 .shape2 {
@@ -53,8 +58,8 @@
   height: 200px;
   width: 200px;
   /* border: 3px solid black; */
-  background-color: #3d0079;
-  filter: drop-shadow(0px 4px 18px rgba(160, 65, 253, 0.77));
+  background-color: var(--color-purple);
+  filter: drop-shadow(0px 4px 18px var(--glow-purple));
 }
 .NodeIcon {
   height: 135px;
@@ -75,13 +80,13 @@
 }
 .nameTextStyle {
   margin-top: 60px;
-  color: lightgray;
+  color: var(--color-text-muted);
   font-size: 2em;
 }
 .nameTextStyle1 {
   font-weight: 200;
   margin-top: 60px;
-  color: lightgray;
+  color: var(--color-text-muted);
   margin-left: 10px;
   font-size: 2em;
 }
@@ -102,10 +107,10 @@
   cursor: pointer;
 }
 .selectionItem {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-subtle);
 }
 .selectionItemPage {
-  color: white;
+  color: var(--color-text);
 }
 .ScrollItemsContainer {
   display: flex;
@@ -125,12 +130,12 @@
 .footerSocialMedia a {
   margin: 0 10px 20px 10px;
   position: relative;
-  color: #555555;
+  color: var(--color-social);
   font-size: 20px;
 }
 
 .footerSocialMedia a:hover {
-  color: #333333;
+  color: var(--color-social-hover);
 }
 
 .footerIcons {

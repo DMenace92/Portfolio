@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import profilePic from '../../Images/profilePic.jpg'
+import profilePic from '../../Images/newProfilePic.png'
 import NodeIcon from '../../Images/NodeIcon.svg'
 import facebook from '../../Images/Vector5.svg'
 import instagram from '../../Images/Vector4.svg'

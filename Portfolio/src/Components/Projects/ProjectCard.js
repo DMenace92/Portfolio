@@ -88,7 +88,7 @@ export default function ProjectCard(props) {
                       <a href={link.url} target="_blank" rel="noreferrer">
                         {link.label}
                       </a>
-                      <ExternalLink className={styles.icon} color="#FD6389" />
+                      <ExternalLink className={styles.icon} />
                     </li>
                   )
                 })}

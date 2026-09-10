@@ -4,7 +4,7 @@
 
 .EducationBanner {
   width: 390px;
-  background-color: rgba(0, 0, 0, 0.372);
+  background-color: var(--scrim-panel);
   /* height:60px; */
   display: flex;
 

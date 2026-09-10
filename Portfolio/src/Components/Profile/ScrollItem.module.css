@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: lightgray;
+  color: var(--color-text-muted);
   text-align: left;
 }
 
@@ -66,9 +66,9 @@
 
 .button {
   cursor: pointer;
-  background: #4b087bb6;
-  background: #d4205f;
-  color: white;
+  background: var(--color-purple-deep-translucent);
+  background: var(--color-accent-rose);
+  color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
@@ -76,7 +76,7 @@
   border: none;
   border-radius: 8px;
   line-height: 1;
-  box-shadow: 0px 4px 28px rgba(253, 99, 137, 0.6);
+  box-shadow: 0px 4px 28px var(--glow-pink);
   margin: 50px 0 80px;
 }
 

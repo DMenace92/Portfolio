@@ -3,7 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
-  background-image: url('../../Images/background-desktop.jpg');
+  background-image: url('../../Images/newBackgroundImage.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -16,7 +16,7 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--scrim-subtle);
 }
 
 .MainPageWrapper::-webkit-scrollbar {
@@ -28,11 +28,11 @@
 .MainPageWrapper html::-webkit-scrollbar-track {
   /* background-color: darkgray; */
   opacity: 50%;
-  background-color: rgba(0, 0, 0, 0.826);
+  background-color: var(--scrim-scrollbar-track);
 }
 
 .MainPageWrapper::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px #7900ef;
+  box-shadow: inset 0 0 6px var(--color-purple-bright);
 }
 
 .sideBarPositionWrapper {
@@ -44,7 +44,7 @@
     min-width: 300px;
   }
   .MainPageWrapper {
-    background-image: url('../../Images/background-tablet.jpg');
+    background-image: url('../../Images/newBackgroundImage.png');
   }
 }
 
@@ -60,6 +60,6 @@
   }
   .MainPageWrapper {
     height: calc(100vh - 60px);
-    background-image: url('../../Images/background-mobile.jpg');
+    background-image: url('../../Images/newBackgroundImage.png');
   }
 }

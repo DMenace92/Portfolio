@@ -1,0 +1,47 @@
+/* =========================================================================
+   THEME COLORS
+   Single source of truth for the site's color scheme.
+   Change a value here to reskin that color everywhere it is used.
+
+   NOTE: The admin dashboard has its own `--admin-*` palette defined in
+   Components/Admin/ProjectPage/ProjectMainPage.module.css.
+   ========================================================================= */
+:root {
+  /* --- Brand accents --- */
+  --color-accent: #60a5fa; /* primary blue: project links, icons, contact buttons */
+  --color-accent-crimson: #38bdf8; /* profile avatar shape 1 (sky) */
+  --color-accent-rose: #2563eb; /* primary call-to-action buttons */
+
+  /* --- Deep blues (were purples) --- */
+  --color-purple: #1e3a8a; /* profile avatar shape 2, tech pills, mobile nav */
+  --color-purple-deep: #1e40af; /* scrollbar thumb, mail corner tab */
+  --color-purple-deep-translucent: #1e40afb6; /* translucent variant of the deep blue */
+  --color-purple-bright: #3b82f6; /* main page scrollbar thumb */
+  --color-plum: #0b1e3a; /* project card background gradient */
+
+  /* --- Surfaces --- */
+  --color-surface-dark: #1e293b; /* contact modal body (slate 800) */
+  --color-surface-darker: #0f172a; /* contact modal header (slate 900) */
+
+  /* --- Text --- */
+  --color-text: #f1f5f9;
+  --color-text-muted: #cbd5e1;
+  --color-text-subtle: rgba(241, 245, 249, 0.55);
+  --color-input-border: #94a3b8;
+  --color-social: #64748b;
+  --color-social-hover: #cbd5e1;
+
+  /* --- Glows / shadows (derived from the accents above) --- */
+  --glow-pink: rgba(37, 99, 235, 0.4); /* button drop shadow */
+  --glow-pink-strong: rgba(56, 189, 248, 0.5); /* avatar shape 1 glow */
+  --glow-purple: rgba(30, 58, 138, 0.55); /* avatar shape 2 glow */
+
+  /* --- Overlays / scrims (neutral tints layered over content) --- */
+  --scrim-subtle: rgba(2, 6, 23, 0.35);
+  --scrim-panel: rgba(2, 6, 23, 0.42);
+  --scrim-modal: rgba(2, 6, 23, 0.45);
+  --scrim-sidebar: rgba(2, 6, 23, 0.55);
+  --scrim-heavy: rgba(2, 6, 23, 0.65);
+  --scrim-scrollbar-track: rgba(2, 6, 23, 0.85);
+  --scrim-navbar: rgba(2, 6, 23, 0.3);
+}
