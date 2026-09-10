@@ -66,7 +66,7 @@ const Experience = forwardRef((props, ref) => {
               />
               <div className={styles.companyAndTitle}>
                 <p className={styles.workCompanyTitle}>
-                  Enwiya Software Solutions, LLC (Feb 2025 - present){' '}
+                  American Express(Feb 2025 - present){' '}
                 </p>
                 <p className={styles.workJobTitle}>Full-Stack Developer</p>
               </div>
