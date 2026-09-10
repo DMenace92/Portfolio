@@ -113,6 +113,24 @@ const Experience = forwardRef((props, ref) => {
               clients while pushing the boundaries of web development.{' '}
             </p>
             <div className={styles.workExpHolder}>
+              <img src={ieLinks} alt="ieLinks" className={styles.companyIcon} />
+              <div className={styles.companyAndTitle}>
+                <p className={styles.workCompanyTitle}>
+                  IeLinks,inc (March 2019 - September 2019)
+                </p>
+                <p className={styles.workJobTitle}>Full-Stack Web Developer</p>
+              </div>
+            </div>
+            <p className={styles.WorkSummery}>
+              Recruited by company to create and maintain content within web
+              applications by providing front and back end web development
+              services. Created educational courses for logistical companies to
+              provide work/trade training, and to provide education for
+              Commercial Drivers Licensing. Worked on multiple company-wide
+              projects simultaneously and provided assistance with development
+              planning on each major project.
+            </p>
+            <div className={styles.workExpHolder}>
               <img
                 src={walmartIcon}
                 alt="walmart"
@@ -132,24 +150,6 @@ const Experience = forwardRef((props, ref) => {
               prescriptions for approval by on-duty pharmacists. Responsible for
               restocking pharmacy materials and ordering drugs. Answered phone
               calls and aided with patient concerns.{' '}
-            </p>
-            <div className={styles.workExpHolder}>
-              <img src={ieLinks} alt="ieLinks" className={styles.companyIcon} />
-              <div className={styles.companyAndTitle}>
-                <p className={styles.workCompanyTitle}>
-                  IeLinks,inc (March 2019 - September 2019)
-                </p>
-                <p className={styles.workJobTitle}>Full-Stack Web Developer</p>
-              </div>
-            </div>
-            <p className={styles.WorkSummery}>
-              Recruited by company to create and maintain content within web
-              applications by providing front and back end web development
-              services. Created educational courses for logistical companies to
-              provide work/trade training, and to provide education for
-              Commercial Drivers Licensing. Worked on multiple company-wide
-              projects simultaneously and provided assistance with development
-              planning on each major project.
             </p>
             <div className={styles.workExpHolder}>
               <img
