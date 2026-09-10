@@ -1,5 +1,4 @@
-const ApiLink = process.env.REACT_APP_API_URL
-console.log(ApiLink)
+const ApiLink = process.env.REACT_APP_API_URL || ''
 export const L_S = 'L_S'
 const loginSuccess = (log) => ({ type: L_S, payload: log })
 

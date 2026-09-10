@@ -1,4 +1,4 @@
-const ApiLink = process.env.REACT_APP_API_URL
+const ApiLink = process.env.REACT_APP_API_URL || ''
 
 const authHeader = () => {
   const token = window.localStorage.getItem('authToken')

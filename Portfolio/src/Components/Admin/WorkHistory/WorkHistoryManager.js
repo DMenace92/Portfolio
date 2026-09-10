@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './WorkHistoryManager.module.css'
 
-const API_URL = process.env.REACT_APP_API_URL
+const API_URL = process.env.REACT_APP_API_URL || ''
 
 // Upload a company logo to the backend, which stores it in Appwrite Storage and returns its URL.
 const uploadLogo = async (file) => {

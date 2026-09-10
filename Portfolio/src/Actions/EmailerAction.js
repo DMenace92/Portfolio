@@ -1,4 +1,4 @@
-const ApiLink = process.env.REACT_APP_API_URL
+const ApiLink = process.env.REACT_APP_API_URL || ''
 
 export const CREATE_EMAIL_SUCCESS = 'CREATE_EMAIL_SUCCESS'
 const createEmailSuccess = (mail) => ({
