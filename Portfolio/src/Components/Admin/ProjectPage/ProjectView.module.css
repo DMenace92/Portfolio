@@ -1,51 +1,145 @@
+.projectViewRoot {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.viewHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--admin-border, #e5e7eb);
+}
+
+.viewTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--admin-text, #111827);
+}
+
+.viewSubtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--admin-muted, #6b7280);
+}
+
+.countBadge {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--admin-primary-soft, #eef2ff);
+  color: var(--admin-primary, #4f46e5);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .projectViewerWrapper {
-  max-height: 82vh;
+  flex: 1;
+  min-height: 0;
   width: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   padding-right: 4px;
+}
+
+.projectCardShell {
+  background: var(--admin-surface, #ffffff);
+  border: 1px solid var(--admin-border, #e5e7eb);
+  border-radius: var(--admin-radius, 10px);
+  box-shadow: var(--admin-shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
+  overflow: hidden;
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.projectCardShell:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .projectActions {
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
-  margin: 8px 0 24px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--admin-border, #e5e7eb);
+  background: var(--admin-surface-alt, #f9fafb);
 }
 
-.projectActions button {
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 0;
-  font-weight: 600;
-  background: var(--admin-primary-soft, #eef2ff);
-  transition: background 0.15s ease;
-}
-
-.projectActions button:hover {
-  background: #e0e7ff;
-}
-
-.projectActions button a {
-  display: inline-block;
+.editButton,
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
   padding: 8px 16px;
-  color: var(--admin-primary, #4f46e5);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
   text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.editButton {
+  background: var(--admin-primary-soft, #eef2ff);
+  color: var(--admin-primary, #4f46e5);
+  border-color: var(--admin-primary-soft, #eef2ff);
+}
+
+.editButton:hover {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
 }
 
 .deleteButton {
-  background: var(--admin-danger, #dc2626) !important;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s ease;
+  background: var(--admin-surface, #ffffff);
+  color: var(--admin-danger, #dc2626);
+  border-color: #fecaca;
 }
 
 .deleteButton:hover {
-  background: var(--admin-danger-hover, #b91c1c) !important;
+  background: var(--admin-danger, #dc2626);
+  color: #ffffff;
+  border-color: var(--admin-danger, #dc2626);
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 24px;
+  border: 1px dashed var(--admin-border, #e5e7eb);
+  border-radius: var(--admin-radius, 10px);
+  background: var(--admin-surface-alt, #f9fafb);
+}
+
+.emptyTitle {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--admin-text, #111827);
+}
+
+.emptyText {
+  margin: 0;
+  font-size: 14px;
+  color: var(--admin-muted, #6b7280);
 }

@@ -30,35 +30,53 @@ const ProjectView = (props) => {
   }
 
   return (
-    <div>
-      <h2>Projects</h2>
+    <div className={Styles.projectViewRoot}>
+      <div className={Styles.viewHeader}>
+        <div>
+          <h2 className={Styles.viewTitle}>Projects</h2>
+          <p className={Styles.viewSubtitle}>
+            Manage, edit, and remove your portfolio projects.
+          </p>
+        </div>
+        <span className={Styles.countBadge}>
+          {projects.length} {projects.length === 1 ? 'project' : 'projects'}
+        </span>
+      </div>
+
       <div className={Styles.projectViewerWrapper}>
-        {projects.length > 0
-          ? projects.map((project) => (
-              <div key={project._id}>
-                <ProjectCard
-                  title={project.title}
-                  techUsed={project.techUsed}
-                  links={project.links}
-                  features={project.features}
-                  image={project.image}
-                  video={project.video}
-                  description={project.description}
-                />
-                <div className={Styles.projectActions}>
-                  <button>
-                    <Link to={`edit/${project._id}`}>Edit</Link>
-                  </button>
-                  <button
-                    className={Styles.deleteButton}
-                    onClick={() => handleDelete(project._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
+        {projects.length > 0 ? (
+          projects.map((project) => (
+            <div key={project._id} className={Styles.projectCardShell}>
+              <ProjectCard
+                title={project.title}
+                techUsed={project.techUsed}
+                links={project.links}
+                features={project.features}
+                image={project.image}
+                video={project.video}
+                description={project.description}
+              />
+              <div className={Styles.projectActions}>
+                <Link to={`edit/${project._id}`} className={Styles.editButton}>
+                  Edit
+                </Link>
+                <button
+                  className={Styles.deleteButton}
+                  onClick={() => handleDelete(project._id)}
+                >
+                  Delete
+                </button>
               </div>
-            ))
-          : null}
+            </div>
+          ))
+        ) : (
+          <div className={Styles.emptyState}>
+            <h3 className={Styles.emptyTitle}>No projects yet</h3>
+            <p className={Styles.emptyText}>
+              Projects you create will appear here.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   )
