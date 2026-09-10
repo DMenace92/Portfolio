@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styles from './ProjectCreation.module.css'
+import { apiBase } from '../../../constants'
 
-const API_URL = process.env.REACT_APP_API_URL || ''
+const API_URL = apiBase
 
 // Upload a file to the backend, which stores it in Appwrite Storage and returns its public URL.
 const uploadImage = async (file) => {

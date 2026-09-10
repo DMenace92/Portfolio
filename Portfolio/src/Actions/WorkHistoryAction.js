@@ -1,4 +1,6 @@
-const ApiLink = process.env.REACT_APP_API_URL || ''
+import { apiBase } from '../constants'
+
+const ApiLink = apiBase
 
 const authHeader = () => {
   const token = window.localStorage.getItem('authToken')

@@ -1,4 +1,6 @@
-const ApiLink = process.env.REACT_APP_API_URL || ''
+import { apiBase } from '../constants'
+
+const ApiLink = apiBase
 export const L_S = 'L_S'
 const loginSuccess = (log) => ({ type: L_S, payload: log })
 
