@@ -1,6 +1,4 @@
 import { L_S, L_L, L_E } from '../Actions/LoginAction'
-import { useNavigate } from 'react-router-dom'
-const navigate = useNavigate
 
 const initState = {
   log: [],
@@ -17,16 +15,12 @@ const LoginReducers = (state = initState, action) => {
         logError: false,
       }
     case L_S:
-      window.localStorage.setItem('token', action.payload.token)
+      window.localStorage.setItem('authToken', action.payload.token)
       return {
         ...state,
         log: [...state.log, action.payload],
         logLoading: false,
         logError: false,
-
-        // id: action.payload.user.id,
-        // username: action.payload.user.username,
-        // token: action.payload.token,
       }
 
     case L_E:

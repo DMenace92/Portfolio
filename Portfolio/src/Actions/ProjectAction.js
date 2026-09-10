@@ -1,4 +1,9 @@
-const ApiLink = process.env.REACT_APP_API_URL;
+const ApiLink = process.env.REACT_APP_API_URL
+
+const authHeader = () => {
+  const token = window.localStorage.getItem('authToken')
+  return token ? { Authorization: `Bearer ${token}` } : {}
+}
 
 export const C_P_S = 'C_P_S'
 const createPorjectSuccess = (pro) => ({ type: C_P_S, payload: pro })
@@ -28,9 +33,9 @@ export const F_P_E = 'F_P_E'
 const fetchProjectError = () => ({ type: F_P_E })
 
 export const U_P_S = 'U_P_S'
-const updatePorjectSuccess = (proID, pro) => ({
+const updatePorjectSuccess = (pro) => ({
   type: U_P_S,
-  payload: { proID, pro },
+  payload: pro,
 })
 
 export const U_P_L = 'U_P_L'
@@ -55,10 +60,6 @@ export const createImage = (pro) => (dispatch) => {
   fetch(`${ApiLink}/create_image`, {
     method: 'POST',
     body: pro,
-    headers: {
-      'Contnet-Type': 'application/json',
-      //   "Content-Type": "multipart/form-data",
-    },
   })
     .then((res) => res.json())
     .then((pro) => {
@@ -72,31 +73,27 @@ export const createImage = (pro) => (dispatch) => {
 //create function
 export const createProject = (pro) => (dispatch) => {
   dispatch(createProjectLoading())
-  // fetch(`https://portfolio-api1-8287cc1ebf3b.herokuapp.com/create_project`, {
-    fetch(`${ApiLink}/create_project`, {
-
+  fetch(`${ApiLink}/create_project`, {
     method: 'POST',
     body: JSON.stringify(pro),
     headers: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
+      ...authHeader(),
     },
   })
     .then((res) => res.json())
-    .then((pro) => {
-      dispatch(createPorjectSuccess(pro))
+    .then((data) => {
+      dispatch(createPorjectSuccess(data.project || data))
     })
     .catch((err) => {
       dispatch(createProjectError(err))
     })
 }
 //fetch
-export const fetchProject = (pro) => (dispatch) => {
+export const fetchProject = () => (dispatch) => {
   dispatch(fetchProjectLoading())
-  // fetch('https://portfolio-api1-8287cc1ebf3b.herokuapp.com/get_projects', {
-    fetch(`${ApiLink}/get_projects`, {
-
-  method: 'GET',
-    body: JSON.stringify(pro),
+  fetch(`${ApiLink}/get_projects`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -117,6 +114,7 @@ export const updateProject = (proID, pro) => (dispatch) => {
     body: JSON.stringify(pro),
     headers: {
       'Content-Type': 'application/json',
+      ...authHeader(),
     },
   })
     .then((res) => res.json())
@@ -128,11 +126,25 @@ export const updateProject = (proID, pro) => (dispatch) => {
     })
 }
 
-export const deleteProject = () => (dispatch) => {
+export const fetchProjectById = (proID) => {
+  return fetch(`${ApiLink}/get_project/${proID}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  }).then((res) => res.json())
+}
+
+export const deleteProject = (proID) => (dispatch) => {
   dispatch(deleteProjectLoading())
+  fetch(`${ApiLink}/delete_project/${proID}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      ...authHeader(),
+    },
+  })
     .then((res) => res.json())
-    .then((pro) => {
-      dispatch(deletePorjectSuccess(pro))
+    .then((data) => {
+      dispatch(deletePorjectSuccess(data._id || proID))
     })
     .catch((err) => {
       dispatch(deleteProjectError(err))

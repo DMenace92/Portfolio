@@ -12,7 +12,6 @@ import { EmailModalProvider } from './providers/emailModalProvider'
 import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './providers/Utils/AuthContext'
 import ProtectedRoute from './providers/Utils/ProtectedRoute'
-// import { storage } from './firebaseConfig'
 
 function App() {
   const [windowSize, setWindowSize] = useState()
@@ -51,19 +50,8 @@ function App() {
     })
   }, [])
 
-  // const footerContent =()=>{
-  //   if(window.innerWidth <= 1024){
-  //      return <MobileNavFooter/>
-  //   }else{
-  //     return null
-
-  //   }
-  // }
-  console.log(isAuthenticated)
-
   return (
     <div className="App">
-      {/* <div className={window.innerWidth <= 1024 || windowSize <= 1024 ? "WindowTesterOn" : "WindowTesterOff"}> */}
       <EmailModalProvider>
         <ActivePageProvider>
           {renderContent()}

@@ -1,25 +1,88 @@
-.mainSignonContainer{
-   display: flex;
-   justify-content: center;
+.mainSignonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--admin-bg, #f4f5f7);
+  font-family:
+    'Fira Sans',
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
-.LoginTitle{
-    color:black;
-    text-align: center;
+
+.loginComponentForm {
+  background: var(--admin-surface, #ffffff);
+  border: 1px solid var(--admin-border, #e5e7eb);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 32px;
 }
-.loginComponentForm{
-    margin-top:100px;
-    border:1px dashed rgba(0, 0, 0, 0.454);
-    box-shadow: 12px 12px 2px 1px rgba(82, 82, 82, 0.084);
-    border-radius: 25px;
-    width:30vw;
-    height:50vh;
-    display: flex;
-    justify-content: center;
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-.loginForm{
-    /* margin-top:120px; */
-    display: flex;
-    flex-direction: column;
-    gap:15px;
-    /* width:30%; */
+
+.LoginTitle {
+  color: var(--admin-text, #111827);
+  text-align: center;
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.loginForm input {
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.loginForm input:focus {
+  border-color: var(--admin-primary, #4f46e5);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.loginForm button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.loginForm button[type='submit'] {
+  background: var(--admin-primary, #4f46e5);
+  color: #ffffff;
+}
+
+.loginForm button[type='submit']:hover {
+  background: var(--admin-primary-hover, #4338ca);
+}
+
+.loginForm button[type='button'] {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.loginForm button[type='button']:hover {
+  background: #e5e7eb;
+}
+
+.loginError {
+  color: #c0392b;
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
 }

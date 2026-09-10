@@ -1,15 +1,13 @@
 require("dotenv").config();
-// const source = require("../utils/index.html");
 const express = require("express");
 const Router = new express.Router();
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 
 const source = fs.readFileSync("utils/index.html", "utf8");
-owner = process.env.G_USER;
 
 Router.post("/send-email", (req, res) => {
-  const {username, phoneNumber, email, message } = req.body;
+  const { username, phoneNumber, email, message } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -17,18 +15,12 @@ Router.post("/send-email", (req, res) => {
     port: 587,
     secure: false, // Use `true` for port 465, `false` for all other ports
     auth: {
-      // user: process.env.G_USER,
-      // pass: process.env.G_PASS,
       user: process.env.G_USER,
       pass: process.env.G_PASS,
     },
   });
 
   const mailOptions = {
-    // from: {
-    //   name: "ESS.LLC",
-    //   address: process.env.G_USER,
-    // },
     from: "ESS, LLC",
     to: process.env.G_USER,
     subject: `Message from ${username}`,
@@ -37,9 +29,6 @@ Router.post("/send-email", (req, res) => {
       .replaceAll("Email", email)
       .replaceAll("Message", message)
       .replaceAll("PhoneNumber", phoneNumber),
-    // to: owner,
-    // subject: `Notification`,
-    // text: `${customName} is trying to reach you`,
   };
 
   // Send email

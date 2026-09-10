@@ -1,0 +1,2 @@
+title,techUsed,features,links,image,video,description,createdAt
+"My Portfolio Site","[""React"", ""Node.js"", ""Appwrite""]","[""Admin auth"", ""Project CRUD"", ""Responsive UI""]","[{""url"": ""https://example.com"", ""label"": ""Live""}, {""url"": ""https://github.com/me/portfolio"", ""label"": ""Source""}]","[{""link"": ""https://cdn.example.com/home.png"", ""description"": ""Home page""}]","[{""link"": ""https://youtu.be/demo"", ""description"": ""Walkthrough""}]","A full-stack portfolio with an Appwrite-backed admin.","2026-09-09T00:00:00.000Z"

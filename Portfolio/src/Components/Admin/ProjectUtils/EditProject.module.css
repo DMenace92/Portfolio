@@ -1,102 +1,150 @@
 /* EditProject.module.css */
 
+.fileHint {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--admin-muted, #6b7280);
+}
+
+.savedHint {
+  margin-left: 10px;
+  color: var(--admin-success, #16a34a);
+  font-weight: 600;
+}
+
 .projectHolderArea {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-
-  }
-  
-  .projectCreateMainContainer {
-    width: 60%;
-    margin-right: 20px;
-
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  color: var(--admin-text, #111827);
 }
-  
-.scrollFormFix{
-/* overflow-x: scroll;
-height:95vh; */
-}
-  .projectCreateForm {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow-x: scroll;
-height:95vh;
 
-  }
-  
-  .editProjectLabel {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: black;
-  }
-  
-  .editProjectLabel input[type="text"],
-  .editProjectLabel input[type="file"],
-  .editProjectLabel textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .addButton {
-    margin-top: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .submitButton {
-    background-color: #008cba;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .projectViewArea {
-    width: 35%;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sectionTitle {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .linkGroup,
-  .featureGroup,
-  .technologyGroup {
-    margin-bottom: 10px;
-  }
-  
-  .linkPreview {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
+.projectCreateMainContainer {
+  flex: 1;
+  min-width: 0;
+}
+
+.scrollFormFix {
+  width: 100%;
+}
+
+.projectCreateForm {
+  background: var(--admin-surface-alt, #f9fafb);
+  border: 1px solid var(--admin-border, #e5e7eb);
+  padding: 24px;
+  border-radius: var(--admin-radius, 10px);
+  box-shadow: var(--admin-shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.editProjectLabel {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--admin-text, #111827);
+}
+
+.editProjectLabel input[type='text'],
+.editProjectLabel input[type='number'],
+.editProjectLabel input[type='file'],
+.editProjectLabel textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.editProjectLabel input[type='text']:focus,
+.editProjectLabel textarea:focus {
+  border-color: var(--admin-primary, #4f46e5);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.addButton {
+  margin-top: 8px;
+  background: var(--admin-surface, #ffffff);
+  color: var(--admin-primary, #4f46e5);
+  border: 1px solid var(--admin-primary, #4f46e5);
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.addButton:hover {
+  background: var(--admin-primary-soft, #eef2ff);
+}
+
+.submitButton {
+  background: var(--admin-primary, #4f46e5);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.submitButton:hover {
+  background: var(--admin-primary-hover, #4338ca);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.projectViewArea {
+  width: 34%;
+  flex-shrink: 0;
+  padding: 20px;
+  background: var(--admin-surface, #ffffff);
+  border: 1px solid var(--admin-border, #e5e7eb);
+  border-radius: var(--admin-radius, 10px);
+  box-shadow: var(--admin-shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
+  position: sticky;
+  top: 0;
+}
+
+.sectionTitle {
+  font-size: 15px;
+  margin: 0 0 10px;
+  color: var(--admin-text, #111827);
+}
+
+.linkGroup,
+.featureGroup,
+.technologyGroup,
+.mediaGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.linkGroup input,
+.mediaGroup input {
+  flex: 1;
+}
+
+.linkPreview {
+  background: var(--admin-surface-alt, #f9fafb);
+  border: 1px solid var(--admin-border, #e5e7eb);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}

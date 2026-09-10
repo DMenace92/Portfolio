@@ -1,5 +1,4 @@
 import React from 'react'
-import ContactModal from '../ContactModal'
 import mail from '../../Images/mail-solid.svg'
 
 import style from './MailNav.module.css'

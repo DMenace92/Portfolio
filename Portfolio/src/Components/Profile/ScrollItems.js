@@ -2,11 +2,9 @@ import React from 'react'
 import styles from './ScrollItem.module.css'
 import AboutMe from '../../Content/AboutMe'
 import Experience from '../../Content/Experience'
-// import Projects from '../../Content/Projects'
 import Projects from '../../Containers/fetchProjectContainer'
 import CodeDecal from '../CodeDecal/CodeDecal'
 import { useEmailModal } from '../../providers/emailModalProvider'
-import ContactModal from '../../Content/ContactModal'
 import { sectionIds } from '../../constants'
 
 const ScrollItems = () => {

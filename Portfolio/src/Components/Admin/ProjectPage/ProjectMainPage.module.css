@@ -1,25 +1,93 @@
-.projectMainHolder{
-    /* border:1px dashed black; */
-    height:90vh;
-    display: flex;
-    gap:40px;
-    
+:root {
+  --admin-bg: #f4f5f7;
+  --admin-surface: #ffffff;
+  --admin-surface-alt: #f9fafb;
+  --admin-border: #e5e7eb;
+  --admin-text: #111827;
+  --admin-muted: #6b7280;
+  --admin-primary: #4f46e5;
+  --admin-primary-hover: #4338ca;
+  --admin-primary-soft: #eef2ff;
+  --admin-success: #16a34a;
+  --admin-success-hover: #15803d;
+  --admin-danger: #dc2626;
+  --admin-danger-hover: #b91c1c;
+  --admin-radius: 10px;
+  --admin-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
-.leftPMPComponent{
-    /* border:1px dashed red; */
-    height:90vh;
-    width:20%;
-
+.projectMainHolder {
+  height: 100vh;
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  font-family:
+    'Fira Sans',
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
-.pmpButtons{
-    width:100%;
-    margin-top:20px;
+
+.leftPMPComponent {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  box-shadow: var(--admin-shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.rightPMPComponent{
-    /* border:1px dashed blue; */
-    height:90vh;
-    width:80%;
+.sidebarTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--admin-text);
+  margin: 4px 8px 16px;
+}
 
+.pmpButtons {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--admin-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.pmpButtons:hover {
+  background: var(--admin-surface-alt);
+}
+
+.pmpButtonActive,
+.pmpButtonActive:hover {
+  background: var(--admin-primary-soft);
+  color: var(--admin-primary);
+  font-weight: 600;
+}
+
+.rightPMPComponent {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow: auto;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  box-shadow: var(--admin-shadow);
+  padding: 24px;
+  box-sizing: border-box;
+  color: var(--admin-text);
 }

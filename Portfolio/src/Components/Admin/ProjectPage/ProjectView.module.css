@@ -1,5 +1,51 @@
-.projectViewerWrapper{
-    height:80vh;
-    width:70vw;
-    overflow-x: scroll;
+.projectViewerWrapper {
+  max-height: 82vh;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+.projectActions {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0 24px;
+}
+
+.projectActions button {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 600;
+  background: var(--admin-primary-soft, #eef2ff);
+  transition: background 0.15s ease;
+}
+
+.projectActions button:hover {
+  background: #e0e7ff;
+}
+
+.projectActions button a {
+  display: inline-block;
+  padding: 8px 16px;
+  color: var(--admin-primary, #4f46e5);
+  text-decoration: none;
+}
+
+.deleteButton {
+  background: var(--admin-danger, #dc2626) !important;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.deleteButton:hover {
+  background: var(--admin-danger-hover, #b91c1c) !important;
 }

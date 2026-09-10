@@ -7,7 +7,6 @@ const EmailModalContext = createContext({
 
 export const EmailModalProvider = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false)
-  // console.log(isVisible, "in the email provider")
   return (
     <EmailModalContext.Provider value={{ isVisible, setIsVisible }}>
       {children}

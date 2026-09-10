@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import SideBar from '../Profile/SideBar'
 import ScrollItems from '../Profile/ScrollItems'
 import './MainPageComponent.css'
-// import ContactModal from '../../Content/ContactModal'
 import ContactModal from '../../Containers/EmailContainer'
 import { useEmailModal } from '../../providers/emailModalProvider'
 import { useActivePage } from '../../providers/activePageProvider'
@@ -38,7 +37,6 @@ function MainPageComponent() {
 
           // Expand the considered "active" range slightly above and below the actual section
           const visibilityOffset = 200 // pixels to look ahead or behind in the scroll
-          // console.log(sectionTop)
 
           if (
             currentScrollPosition + visibilityOffset >= sectionTop &&
@@ -69,14 +67,6 @@ function MainPageComponent() {
       </div>
 
       <ScrollItems />
-
-      {/** TODO: Create your <Sidebar /> component here and pull
-       * <
-       * side bar items into the new component from Profile */}
-      {/**
-       * TODO: Create <MainContent /> and pull everything from <Profile /> that isn't in the left side
-       * of the screen and bring it into this component delete Profile
-       */}
     </div>
   )
 }

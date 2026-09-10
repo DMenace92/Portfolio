@@ -1,43 +1,88 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Styles from './EditProject.module.css'
+import { fetchProjectById } from '../../../Actions/ProjectAction'
+
+const API_URL = process.env.REACT_APP_API_URL
+
+// Upload a file to the backend, which stores it in Appwrite Storage and returns its public URL.
+const uploadImage = async (file) => {
+  const formData = new FormData()
+  formData.append('file', file)
+
+  const response = await fetch(`${API_URL}/create_image`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${window.localStorage.getItem('authToken')}`,
+    },
+    body: formData,
+  })
+
+  if (!response.ok) {
+    throw new Error('Image upload failed')
+  }
+
+  const data = await response.json()
+  return data.url
+}
 
 const EditProject = (props) => {
   const { proID } = useParams()
-  console.log(proID, 'this is the pro ID')
-  const [selectedProject, setSelectedProject] = useState(null)
-
   const [formData, setFormData] = useState({
     title: '',
     links: [{ url: '', label: '' }],
     features: [''],
     techUsed: [''],
-    image: [{ link: '', description: '' }],
-    video: [{ link: '', description: '' }],
+    images: [{ link: '', description: '' }],
+    videos: [{ link: '', description: '' }],
     description: '',
   })
+  const [file, setFile] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
+  const [saved, setSaved] = useState(false)
 
-  // useEffect(() => {
-  //   // Fetch the project by ID and set it to selectedProject
-  //   // Assuming props.getProject is a function that fetches the project
-  //   const fetchProject = async () => {
-  //     const project = await props.updateProject(proID)
-  //     setSelectedProject(project)
-  //     setFormData({
-  //       title: project.title || '',
-  //       links: project.links || [{ url: '', label: '' }],
-  //       features: project.features || [''],
-  //       techUsed: project.techUsed || [''],
-  //       image: [{ link: '', description: '' }] || [],
-  //       video: [{ link: '', description: '' }] || [],
-  //       description: project.description || '',
-  //     })
-  //   }
-
-  //   fetchProject()
-  // }, [proID, props])
-
-  console.log(props.updateProject, 'edit prop area')
+  useEffect(() => {
+    let active = true
+    const load = async () => {
+      try {
+        const project = await fetchProjectById(proID)
+        if (!active || !project) return
+        setFormData({
+          title: project.title || '',
+          links:
+            project.links && project.links.length
+              ? project.links
+              : [{ url: '', label: '' }],
+          features:
+            project.features && project.features.length
+              ? project.features
+              : [''],
+          techUsed:
+            project.techUsed && project.techUsed.length
+              ? project.techUsed
+              : [''],
+          images:
+            project.image && project.image.length
+              ? project.image
+              : [{ link: '', description: '' }],
+          videos:
+            project.video && project.video.length
+              ? project.video
+              : [{ link: '', description: '' }],
+          description: project.description || '',
+        })
+      } catch (err) {
+        console.error('Failed to load project', err)
+      } finally {
+        if (active) setLoading(false)
+      }
+    }
+    load()
+    return () => {
+      active = false
+    }
+  }, [proID])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -63,8 +108,19 @@ const EditProject = (props) => {
   }
 
   const handleFileChange = (e) => {
-    const { name, files } = e.target
-    setFormData({ ...formData, [name]: files })
+    setFile(e.target.files[0])
+  }
+
+  const handleImageField = (index, field, value) => {
+    const images = [...formData.images]
+    images[index] = { ...images[index], [field]: value }
+    setFormData({ ...formData, images })
+  }
+
+  const handleVideoField = (index, field, value) => {
+    const videos = [...formData.videos]
+    videos[index] = { ...videos[index], [field]: value }
+    setFormData({ ...formData, videos })
   }
 
   const addTechnology = () => {
@@ -82,49 +138,56 @@ const EditProject = (props) => {
     })
   }
 
+  const addImage = () => {
+    setFormData({
+      ...formData,
+      images: [...formData.images, { link: '', description: '' }],
+    })
+  }
+
+  const addVideo = () => {
+    setFormData({
+      ...formData,
+      videos: [...formData.videos, { link: '', description: '' }],
+    })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmitting(true)
+    setSaved(false)
 
-    // Prepare links array of objects
-    const links = formData.links.map((link) => ({
-      url: link.url,
-      label: link.label,
-    }))
+    try {
+      let images = formData.images
+      if (file) {
+        const url = await uploadImage(file)
+        images = images.map((img, index) =>
+          index === 0 ? { ...img, link: url } : img
+        )
+      }
 
-    // Prepare images array of objects
-    const images = Array.from(formData.image).map((file) => ({
-      link: `/path/to/images/${file.name}`,
-      description: 'Image Description',
-    }))
+      const projectData = {
+        title: formData.title,
+        techUsed: formData.techUsed,
+        links: formData.links,
+        features: formData.features,
+        images,
+        videos: formData.videos,
+        description: formData.description,
+      }
 
-    // Prepare videos array of objects
-    const videos = Array.from(formData.video).map((file) => ({
-      link: `/path/to/videos/${file.name}`,
-      description: 'Video Description',
-    }))
-
-    const projectData = {
-      title: formData.title,
-      techUsed: formData.techUsed,
-      links: links,
-      features: formData.features,
-      image: images,
-      video: videos,
-      description: formData.description,
+      await props.updateProject(proID, projectData)
+      setFile(null)
+      setSaved(true)
+    } catch (err) {
+      console.error('Failed to update project', err)
+    } finally {
+      setSubmitting(false)
     }
+  }
 
-    await props.updateProject(selectedProject._id, projectData)
-
-    // Reset form data if necessary
-    setFormData({
-      title: '',
-      links: [{ url: '', label: '' }],
-      features: [''],
-      techUsed: [''],
-      image: [{ link: '', description: '' }],
-      video: [{ link: '', description: '' }],
-      description: '',
-    })
+  if (loading) {
+    return <div className={Styles.projectHolderArea}>Loading project…</div>
   }
 
   return (
@@ -223,27 +286,79 @@ const EditProject = (props) => {
 
             <label className={Styles.editProjectLabel}>
               Images:
-              {/* <div>
-                {formData.image.map((image, index)=>{})} */}
               <input
                 type="file"
                 name="image"
                 accept="image/*"
-                multiple
                 onChange={handleFileChange}
               />
-              {/* </div> */}
+              {file ? (
+                <span className={Styles.fileHint}>
+                  New file selected: {file.name} (replaces first image)
+                </span>
+              ) : null}
+              <div>
+                {formData.images.map((image, index) => (
+                  <div key={index} className={Styles.mediaGroup}>
+                    <input
+                      type="text"
+                      value={image.link}
+                      placeholder="Image link"
+                      onChange={(e) =>
+                        handleImageField(index, 'link', e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={image.description}
+                      placeholder="Description"
+                      onChange={(e) =>
+                        handleImageField(index, 'description', e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addImage}
+                  className={Styles.addButton}
+                >
+                  Add Another Image
+                </button>
+              </div>
             </label>
 
             <label className={Styles.editProjectLabel}>
               Videos:
-              <input
-                type="file"
-                name="video"
-                accept="video/*"
-                multiple
-                onChange={handleFileChange}
-              />
+              <div>
+                {formData.videos.map((video, index) => (
+                  <div key={index} className={Styles.mediaGroup}>
+                    <input
+                      type="text"
+                      value={video.link}
+                      placeholder="Video link"
+                      onChange={(e) =>
+                        handleVideoField(index, 'link', e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={video.description}
+                      placeholder="Description"
+                      onChange={(e) =>
+                        handleVideoField(index, 'description', e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addVideo}
+                  className={Styles.addButton}
+                >
+                  Add Another Video
+                </button>
+              </div>
             </label>
 
             <label className={Styles.editProjectLabel}>
@@ -257,9 +372,14 @@ const EditProject = (props) => {
               />
             </label>
 
-            <button type="submit" className={Styles.submitButton}>
-              Submit
+            <button
+              type="submit"
+              className={Styles.submitButton}
+              disabled={submitting}
+            >
+              {submitting ? 'Saving…' : 'Save Changes'}
             </button>
+            {saved ? <span className={Styles.savedHint}>Saved!</span> : null}
           </form>
         </div>
       </div>

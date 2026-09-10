@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-// import ProjectMainPage from '../Components/Admin/ProjectPage/ProjectMainPage'
 import Project from '../Content/Projects'
 import { fetchProject } from '../Actions/ProjectAction'
 

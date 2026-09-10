@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-// import EmailForm from "../Components/EmailForm/EmailForm"
 import ContactModal from '../Content/ContactModal'
 import { emailer } from '../Actions/EmailerAction'
 

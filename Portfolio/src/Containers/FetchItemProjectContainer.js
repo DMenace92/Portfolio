@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-// import ProjectMainPage from '../Components/Admin/ProjectPage/ProjectMainPage'
 import ProjectView from '../Components/Admin/ProjectPage/ProjectView'
-import { fetchProject } from '../Actions/ProjectAction'
+import { fetchProject, deleteProject } from '../Actions/ProjectAction'
 
 const mapStateToProps = ({ pro }) => {
   return {
@@ -12,6 +11,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchProject: (pro) => {
       dispatch(fetchProject(pro))
+    },
+    deleteProject: (id) => {
+      dispatch(deleteProject(id))
     },
   }
 }

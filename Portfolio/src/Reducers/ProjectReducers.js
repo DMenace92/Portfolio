@@ -8,12 +8,12 @@ import {
   C_I_L,
   C_I_S,
   C_I_E,
-  // U_P_S,
-  // U_P_L,
-  // U_P_E,
-  // D_P_S,
-  // D_P_L,
-  // D_P_E,
+  U_P_S,
+  U_P_L,
+  U_P_E,
+  D_P_S,
+  D_P_L,
+  D_P_E,
 } from '../Actions/ProjectAction'
 
 const initState = {
@@ -45,6 +45,8 @@ const ProjectReducers = (state = initState, action) => {
       }
     case C_P_S:
       return {
+        ...state,
+        proLoading: false,
         pro: [...state.pro, action.payload],
       }
     case C_P_E:
@@ -60,6 +62,7 @@ const ProjectReducers = (state = initState, action) => {
     case F_P_S:
       return {
         ...state,
+        proLoading: false,
         pro: action.payload,
       }
     case F_P_E:
@@ -67,34 +70,40 @@ const ProjectReducers = (state = initState, action) => {
         ...state,
         proError: true,
       }
-    // case U_P_L:
-    //   return {
-    //     ...state,
-    //     proLoading: true,
-    //   }
-    // case U_P_S:
-    //   return {
-    //     ...state,
-    //   }
-    // case U_P_E:
-    //   return {
-    //     ...state,
-    //     proError: true,
-    //   }
-    // case D_P_L:
-    //   return {
-    //     ...state,
-    //     proLoading: true,
-    //   }
-    // case D_P_S:
-    //   return {
-    //     ...state,
-    //   }
-    // case D_P_E:
-    //   return {
-    //     ...state,
-    //     proError: true,
-    //   }
+    case U_P_L:
+      return {
+        ...state,
+        proLoading: true,
+      }
+    case U_P_S:
+      return {
+        ...state,
+        proLoading: false,
+        pro: state.pro.map((p) =>
+          p._id === action.payload._id ? action.payload : p
+        ),
+      }
+    case U_P_E:
+      return {
+        ...state,
+        proError: true,
+      }
+    case D_P_L:
+      return {
+        ...state,
+        proLoading: true,
+      }
+    case D_P_S:
+      return {
+        ...state,
+        proLoading: false,
+        pro: state.pro.filter((p) => p._id !== action.payload),
+      }
+    case D_P_E:
+      return {
+        ...state,
+        proError: true,
+      }
     default:
       return state
   }

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styles from './ProjectMainPage.module.css'
-// import ProjectCreateion from '../ProjectUtils/ProjectCreation'
 import ProjectCreation from '../../../Containers/ProjectContainer'
-// import EditProject from '../ProjectUtils/EditProject'
 import EditProject from '../../../Containers/updateProjectContainer'
 import ProjectView from '../../../Containers/FetchItemProjectContainer'
+import WorkHistoryManager from '../../../Containers/WorkHistoryContainer'
 
 const ProjectMainPage = () => {
   const [currentPage, setCurrentPage] = useState('ProjectView')
@@ -20,43 +19,56 @@ const ProjectMainPage = () => {
         return <ProjectCreation />
       case 'editProject':
         return <EditProject />
+      case 'workHistory':
+        return <WorkHistoryManager />
       default:
         return null
     }
   }
 
   return (
-    <div style={{ color: 'black' }}>
-      <div className={styles.projectMainHolder}>
-        <div className={styles.leftPMPComponent}>
-          <button
-            className={styles.pmpButtons}
-            value="ProjectView"
-            onClick={_onClick}
-          >
-            View Project
-          </button>
-          <button
-            className={styles.pmpButtons}
-            value="createProject"
-            onClick={_onClick}
-          >
-            Add project
-          </button>
-          <button
-            className={styles.pmpButtons}
-            value="editProject"
-            onClick={_onClick}
-          >
-            update Project
-          </button>
-          <button className={styles.pmpButtons}>delete Project</button>
-        </div>
-
-        <div className={styles.rightPMPComponent}>
-          <div>{direct(currentPage)}</div>
-        </div>
+    <div className={styles.projectMainHolder}>
+      <div className={styles.leftPMPComponent}>
+        <h2 className={styles.sidebarTitle}>Admin</h2>
+        <button
+          className={`${styles.pmpButtons} ${
+            currentPage === 'ProjectView' ? styles.pmpButtonActive : ''
+          }`}
+          value="ProjectView"
+          onClick={_onClick}
+        >
+          View Projects
+        </button>
+        <button
+          className={`${styles.pmpButtons} ${
+            currentPage === 'createProject' ? styles.pmpButtonActive : ''
+          }`}
+          value="createProject"
+          onClick={_onClick}
+        >
+          Add Project
+        </button>
+        <button
+          className={`${styles.pmpButtons} ${
+            currentPage === 'editProject' ? styles.pmpButtonActive : ''
+          }`}
+          value="editProject"
+          onClick={_onClick}
+        >
+          Update Project
+        </button>
+        <button
+          className={`${styles.pmpButtons} ${
+            currentPage === 'workHistory' ? styles.pmpButtonActive : ''
+          }`}
+          value="workHistory"
+          onClick={_onClick}
+        >
+          Work History
+        </button>
       </div>
+
+      <div className={styles.rightPMPComponent}>{direct(currentPage)}</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-const ApiLink = process.env.REACT_APP_API_URL;
+const ApiLink = process.env.REACT_APP_API_URL
 console.log(ApiLink)
 export const L_S = 'L_S'
 const loginSuccess = (log) => ({ type: L_S, payload: log })
@@ -9,11 +9,8 @@ const loginLoading = () => ({ type: L_L })
 export const L_E = 'L_E'
 const loginError = (err) => ({ type: L_E, payload: err })
 
-export const L_O = 'L_O'
-
 export const login = (log) => (dispatch) => {
   dispatch(loginLoading())
-  // fetch(`https://portfolio-api1-8287cc1ebf3b.herokuapp.com/admin/login`, {
   fetch(`${ApiLink}/admin/login`, {
     method: 'POST',
     body: JSON.stringify(log),
@@ -21,58 +18,17 @@ export const login = (log) => (dispatch) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((res) => res.json())
-    .then((log) => {
-      dispatch(loginSuccess(log))
+    .then(async (res) => {
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to login')
+      }
+      return data
+    })
+    .then((data) => {
+      dispatch(loginSuccess(data))
     })
     .catch((err) => {
-      dispatch(loginError())
+      dispatch(loginError(err.message))
     })
 }
-
-// export const login = (log) => {
-//   return async (dispatch) => {
-//     dispatch(loginLoading())
-//     try {
-//       const res = await fetch(`http://localhost:9000/admin/login`, {
-//         method: 'POST',
-//         body: JSON.stringify(log),
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       })
-//       if (!res.ok) {
-//         throw new Error('Failed to login')
-//       }
-//       const data = await res.json()
-//       dispatch(loginSuccess(data))
-//     } catch (err) {
-//       dispatch(loginError(err))
-//     }
-//   }
-// }
-
-// export const login = (log) => (dispatch) => {
-//   dispatch(loginLoading()) // Dispatch loading action
-
-//   fetch('http://localhost:9000/admin/login', {
-//     method: 'POST',
-//     body: JSON.stringify(log),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((res) => {
-//       if (!res.ok) {
-//         throw new Error('Failed to authenticate')
-//       }
-//       return res.json()
-//     })
-//     .then((log) => {
-//       dispatch(loginSuccess(log)) // Dispatch success action with received data
-//     })
-//     .catch((err) => {
-//       console.error('Login error:', err)
-//       dispatch(loginError(err)) // Dispatch error action
-//     })
-// }
