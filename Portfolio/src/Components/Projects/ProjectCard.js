@@ -56,13 +56,17 @@ export default function ProjectCard(props) {
           {/* TECH USED */}
           {techUsed && (
             <div className={styles.pillContainer}>
-              {techUsed.map((techUsed) => {
-                return (
-                  <div key={techUsed} className={styles.pill}>
-                    {techUsed}
-                  </div>
-                )
-              })}
+              {(Array.isArray(techUsed) ? techUsed : [techUsed])
+                .flatMap((tech) => String(tech).split(','))
+                .map((tech) => tech.trim())
+                .filter(Boolean)
+                .map((tech) => {
+                  return (
+                    <div key={tech} className={styles.pill}>
+                      {tech}
+                    </div>
+                  )
+                })}
             </div>
           )}
           {/* DESCRIPTION */}
