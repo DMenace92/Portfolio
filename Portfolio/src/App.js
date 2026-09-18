@@ -9,13 +9,14 @@ import PMP from './Components/Admin/ProjectPage/ProjectMainPage'
 import EditProject from './Containers/updateProjectContainer'
 import WebFont from 'webfontloader'
 import { EmailModalProvider } from './providers/emailModalProvider'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { AuthProvider } from './providers/Utils/AuthContext'
 import ProtectedRoute from './providers/Utils/ProtectedRoute'
 
 function App() {
   const [windowSize, setWindowSize] = useState()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const { pathname } = useLocation()
 
   const handleLogin = () => {
     setIsAuthenticated(true) // Function to set isAuthenticated state to true
@@ -23,7 +24,8 @@ function App() {
 
   const renderContent = () => {
     if (windowSize > 768 || window.innerWidth > 768) {
-      return <MailNav />
+      // return <MailNav />
+      return pathname === '/' ? <MailNav /> : null
     } else if (windowSize <= 768 || window.innerWidth <= 768) {
       return <NavBar />
     } else {
